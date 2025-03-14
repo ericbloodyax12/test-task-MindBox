@@ -1,13 +1,10 @@
 .header {
-  //width: 330px;
-  //height: 40px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Georgia, sans-serif;
 }
 
 .header__title {
-  //font-family: 'Montserrat', sans-serif;
-  //font-weight: 700;
-  //font-size: 26px;
-  //line-height: 31.69px;
-  color: #222222;
+  color: #e9d9d8; // цвета взяты со скриншота тз
 }
