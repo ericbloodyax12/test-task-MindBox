@@ -1,18 +1,18 @@
-import { useState } from 'react'
+import {StoreProvider} from "./providers";
+import {TodoListPage} from "./pages";
+
 import './App.scss'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <>
-      <div>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-          <div>learn react</div>
-      </div>
-    </>
+      <StoreProvider>
+          <div>
+             <TodoListPage />
+          </div>
+      </StoreProvider>
+
   )
 }
 
