@@ -1,6 +1,6 @@
 import {makeAutoObservable} from "mobx";
 
-import type {Todo} from "../../models-view";
+import {Todo} from "../../models-view";
 import {todoService} from "../../service";
 
 export class TodosStore {
@@ -25,7 +25,7 @@ export class TodosStore {
     async getTodos(): Promise<Todo[]>  {
         try {
             const todos = await todoService.getTodos(5)
-            return todos
+            return Todo.MapCollection(todos)
         }
         catch (error: any) {
             throw new Error(error);
