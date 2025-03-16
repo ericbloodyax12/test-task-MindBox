@@ -1,16 +1,25 @@
 import {StoreProvider} from "./providers";
 import {TodoListPage} from "./pages";
+import {UI} from "./components";
+
 
 import './App.scss'
 
-function App() {
 
+
+function App() {
 
   return (
       <StoreProvider>
-          <div>
-             <TodoListPage />
-          </div>
+          <UI.Card>
+              <div>
+                  <TodoListPage/>
+              </div>
+              <UI.Button>
+                  button
+              </UI.Button>
+              <UI.CheckBox/>
+          </UI.Card>
       </StoreProvider>
 
   )

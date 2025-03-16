@@ -27,8 +27,8 @@ export class TodosStore {
             const todos = await todoService.getTodos(5)
             return Todo.MapCollection(todos)
         }
-        catch (error: any) {
-            throw new Error(error);
+        catch (error) {
+            throw new Error("не удалось загрузить тудулисты");
         }
 
     }

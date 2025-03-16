@@ -1,10 +1,9 @@
 import React from 'react';
 import {Header} from "./header/Header.tsx";
-
-
-import './layout.scss'
 import {Footer} from "./footer/Footer.tsx";
 import App from "../App.tsx";
+
+import './layout.scss'
 
 type TLayoutProps = {}
 
