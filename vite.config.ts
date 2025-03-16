@@ -1,15 +1,13 @@
 import {defineConfig, UserConfig} from 'vite'
 import react from '@vitejs/plugin-react'
-import * as path from 'path'
+import * as path from "node:path";
 
 export default defineConfig({
   plugins: [react()],
   base: "/test-task-MindBox/",
-  test: {
-    environment: 'jsdom', // Добавляем jsdom для работы с DOM
-    globals: true, // Позволяет использовать `describe`, `it`, `expect` без импортов
-  },
   resolve: {
-    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
-  },
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  }
 } as UserConfig )

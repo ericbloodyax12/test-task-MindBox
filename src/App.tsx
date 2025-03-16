@@ -1,6 +1,6 @@
-import {StoreProvider} from "./providers";
-import {TodoListPage} from "./pages";
-import {UI} from "./components";
+import {StoreProvider} from "@/providers";
+import {TodoListPage} from "@/pages";
+import {UI} from "@/components";
 
 
 import './App.scss'
