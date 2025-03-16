@@ -1,25 +1,25 @@
 import React, {ReactNode, useEffect} from 'react';
 import {observer} from "mobx-react-lite";
+
+import {TodosStore} from "@/store";
 import {StoreContext} from "./StoreContext.tsx";
-import {TodosStore} from "../../store";
 
 
 type TStoreProviderProps = {
-    children: ReactNode;
-
+  children: ReactNode;
 }
 
 export const StoreProvider: React.FC<TStoreProviderProps> = observer((props) => {
-        const todoStore = new TodosStore();
-        useEffect(() => {
-            todoStore.init()
-        }, []);
+    const todoStore = new TodosStore();
+    useEffect(() => {
+      todoStore.init()
+    }, []);
 
-        return (
-            <StoreContext.Provider value={{todoStore}}>
-                {props.children}
-            </StoreContext.Provider>
-        );
-    }
+    return (
+      <StoreContext.Provider value={{todoStore}}>
+        {props.children}
+      </StoreContext.Provider>
+    );
+  }
 )
 
