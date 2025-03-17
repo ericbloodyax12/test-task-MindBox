@@ -9,7 +9,7 @@ type CheckBoxProps = {
 } & ComponentPropsWithoutRef<'input'>;
 
 export const CheckBox: React.FC<CheckBoxProps> = ({
-  label,
+  label, // если нужно будет
   checked,
   onChange,
   className = '',

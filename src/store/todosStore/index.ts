@@ -20,19 +20,38 @@ export class TodosStore {
   }
 
   async init() {
-    const todos = await this.getTodos()
+    const todos = await this.getAllTodos()
     this.setTodos(todos)
   }
 
-  async getTodos(): Promise<Todo[]> {
+  async getAllTodos(): Promise<Todo[]> {
+    const todoFromLocalStorage = localStorage.getItem("todos");
+    if (todoFromLocalStorage) {
+      return JSON.parse(todoFromLocalStorage)
+    }
     try {
-      const todos = await todoService.getTodos(5)
-      return Todo.MapCollection(todos)
+      const allDTOTodos = await todoService.getAllTodos()
+      const allTodos= Todo.MapCollection(allDTOTodos)
+      localStorage.setItem("todos", JSON.stringify(allTodos))
+      return allTodos
     } catch (error) {
       throw new Error("не удалось загрузить тудулисты");
     }
 
   }
+
+  getTodosByUserId(userId: number ): Todo[] {
+      return this._todos.filter(todo => todo.userId === userId)
+  }
+
+  async deleteTodo(userId: number, id: number ): Promise<void> {
+    const userTodoList = this._todos.filter(todo => todo.userId === userId)
+    const filteredTodos = userTodoList.filter(todo => todo.id !== id)
+    this.setTodos(filteredTodos)
+    localStorage.setItem("todos", JSON.stringify(filteredTodos)) // если был бы полноценный api, то использовался метод api DELETE
+
+  }
+
 
 }
 

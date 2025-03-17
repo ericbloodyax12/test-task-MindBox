@@ -5,10 +5,12 @@ class TodoService {
 
   private readonly API_BASE_URL = "https://jsonplaceholder.typicode.com/todos"
 
-  async getTodos(limit: number = 5): Promise<ITodo[]> {
-    const response = await fetch(`${this.API_BASE_URL}?_limit=${limit}`)
+  async getAllTodos(): Promise<ITodo[]> {
+
+    const response = await fetch(`${this.API_BASE_URL}`)
     if (!response.ok) throw new Error('Ошибка при загрузке данных');
-    return response.json()
+    const todos: ITodo[] = await response.json()
+    return todos
   }
 }
 
