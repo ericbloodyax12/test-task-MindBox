@@ -6,7 +6,7 @@ import "./index.scss"
 
 
 type ButtonProps<T extends ElementType> = {
-  as?: T
+  as?: T // для полиморфизма
   variant?: 'primary' | 'secondary'; // если нужно дополнить вариант кнопки
   children: ReactNode;
 } & ComponentPropsWithoutRef<T>

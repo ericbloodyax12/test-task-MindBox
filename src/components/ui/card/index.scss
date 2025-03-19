@@ -2,4 +2,12 @@
   box-shadow:
           1px 1px 2px rgb(0 0 0 / 10%),
           -1px -1px 2px rgb(0 0 0 / 10%);
+  width: 600px;
+}
+
+.todoListContainer {
+  min-height: 100px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  z-index: 1;
 }

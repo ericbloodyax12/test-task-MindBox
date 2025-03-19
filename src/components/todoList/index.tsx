@@ -9,14 +9,17 @@ type TTodoListProps = {
 
 export const TodoList: React.FC<TTodoListProps> = observer(
     ({userId}) => {
+
+
+
+
         return (
-            <div>
-                todolist
+            <UI.Card>
                 <TasksList userId={userId} />
                 <UI.Button>
                     button
                 </UI.Button>
-            </div>
+            </UI.Card>
         );
     }
 )

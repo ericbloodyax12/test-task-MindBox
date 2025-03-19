@@ -48,7 +48,7 @@ export class TodosStore {
     const userTodoList = this._todos.filter(todo => todo.userId === userId)
     const filteredTodos = userTodoList.filter(todo => todo.id !== id)
     this.setTodos(filteredTodos)
-    localStorage.setItem("todos", JSON.stringify(filteredTodos)) // если был бы полноценный api, то использовался метод api DELETE
+    localStorage.setItem("todos", JSON.stringify(filteredTodos)) // если бы был полноценный api, то использовался метод api DELETE
 
   }
 
