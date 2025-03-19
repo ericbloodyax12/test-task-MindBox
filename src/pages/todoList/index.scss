@@ -7,7 +7,9 @@
   .todo-header-container {
     display: flex;
     align-items: center;
-    gap: 15px
+    gap: 15px;
+    background-color: #c7c7c7;
+    padding-left: 20px;
   }
 
   .collapsed {
