@@ -12,3 +12,17 @@
   display: flex;
   gap: 10px
 }
+
+.delete-icon-container {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.delete-icon {
+  width: 15px;
+  height: 15px;
+}

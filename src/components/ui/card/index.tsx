@@ -4,14 +4,14 @@ import "./index.scss"
 
 export type CardProps = {
   variant?: "todoListContainer",
-  extraClassName?: string
+  className?: string
 } & ComponentPropsWithoutRef<'div'>
 
 export const Card = forwardRef<HTMLDivElement, CardProps>((
-  {children, variant, extraClassName, ...restProps}, ref
+    {children, variant, className, ...restProps}, ref
 ) => {
   return (
-    <div className={`card ${variant} ${extraClassName}`} ref={ref} {...restProps}>
+    <div className={`card ${variant} ${className}`} ref={ref} {...restProps}>
       {children}
     </div>
   );

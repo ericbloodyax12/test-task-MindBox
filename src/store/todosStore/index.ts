@@ -1,7 +1,9 @@
 import {makeAutoObservable} from "mobx";
+import { v4 as uuidv4 } from "uuid";
 
 import {Todo} from "@/models-view";
 import {todoService} from "@/service";
+import {EPriority} from "@/models-view/Todo/EPriority.ts";
 
 export class TodosStore {
 
@@ -41,14 +43,22 @@ export class TodosStore {
   }
 
   getTodosByUserId(userId: number ): Todo[] {
+    const userTasks = this._todos.filter(todo => todo.userId === userId)
       return this._todos.filter(todo => todo.userId === userId)
   }
 
-  async deleteTodo(userId: number, id: number ): Promise<void> {
-    const userTodoList = this._todos.filter(todo => todo.userId === userId)
-    const filteredTodos = userTodoList.filter(todo => todo.id !== id)
+  async deleteTodo(id: number ): Promise<void> {
+    const filteredTodos = this._todos.filter(todo => todo.id !== id)
     this.setTodos(filteredTodos)
     localStorage.setItem("todos", JSON.stringify(filteredTodos)) // если бы был полноценный api, то использовался метод api DELETE
+
+  }
+  async addTodo(userId: number, name: string ): Promise<void> {
+    const id =  parseInt(uuidv4(), 16);
+    const newTodo:Todo = {userId, id:id, title: name, completed: false, priority: EPriority.MEDIUM};
+    const newTodos = [newTodo, ...this._todos]
+    this.setTodos(newTodos)
+    localStorage.setItem("todos", JSON.stringify(newTodos)) // если бы был полноценный api, то использовался метод api POST
 
   }
 
