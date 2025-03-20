@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {TasksList} from "@/components/todoList/tasksList";
 import {CustomUI} from '@/components';
 import {observer} from "mobx-react-lite";
@@ -20,6 +20,11 @@ export const TodoList: React.FC<TTodoListProps> = observer(
     const filteredTasks = filteredTasksHelper(userTasks, status)
 
     const itemsLeftCount = filteredTasks.length
+    const filterButtons = useMemo(() => {
+        return Object.values(EFilterTD).map((filterName) => {
+            return <CustomUI.Button onClick={() => setStatus(filterName) }>{filterName}</CustomUI.Button>
+        })
+    }, [])
 
     return (
       <CustomUI.Card className={'tasksList-card-wrapper'}>
@@ -28,15 +33,7 @@ export const TodoList: React.FC<TTodoListProps> = observer(
           <div className={"todoList-bottom-panel"}>
             {`${itemsLeftCount} items left`}
             <div className={"todoList-bottom-panel__mid"}>
-              <CustomUI.Button onClick={() => setStatus(EFilterTD.ALL)}>
-                {EFilterTD.ALL}
-              </CustomUI.Button>
-              <CustomUI.Button onClick={() => setStatus(EFilterTD.Active)}>
-                {EFilterTD.Active}
-              </CustomUI.Button>
-              <CustomUI.Button onClick={() => setStatus(EFilterTD.COMPLETED)}>
-                {EFilterTD.COMPLETED}
-              </CustomUI.Button>
+                {filterButtons}
             </div>
             <CustomUI.Button>
               Clear Completed
