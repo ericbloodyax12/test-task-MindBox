@@ -42,7 +42,7 @@ export const TasksList: React.FC<TTasksListProps> = observer(
 
                         <button className={"delete-icon-container"}>
                             <img src={crossIcon} alt="Delete" className={"delete-icon"}
-                                 onClick={(e) => deleteTask(todo.id)}/>
+                                 onClick={() => deleteTask(todo.id)}/>
                         </button>
                     </div>
                 )

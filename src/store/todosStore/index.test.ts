@@ -39,15 +39,15 @@ describe('TodosStore', () => {
     })
 
     describe('deleteTodo', () => {
-        it('should delete a todo by id', async () => {
-            await store.deleteTodo(8);
+        it('should delete a todo by id',  () => {
+            store.deleteTodo(8);
             const remainingTodos = store.Todos;
             expect(remainingTodos.length).toBe(6);
             expect(remainingTodos.some(todo => todo.id === 8)).toBe(false);
 
         });
-        it("should`not delete another id", async () => {
-            await store.deleteTodo(99);
+        it("should`not delete another id",  () => {
+            store.deleteTodo(99);
             expect(store.Todos.length).toBe(7);
         });
     })

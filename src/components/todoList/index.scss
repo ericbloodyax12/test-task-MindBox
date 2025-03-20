@@ -1,11 +1,16 @@
-.todoList-bottom-panel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 19px 15px;
+.tasksList-card-wrapper {
+    width: 100%;
+    .todoList-bottom-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 19px 15px;
+      //width: 100%;
+      .todoList-bottom-panel__mid {
+        display: flex;
+        gap: 15px;
+      }
+    }
 }
 
-.todoList-bottom-panel__mid {
-  display: flex;
-  gap: 15px;
-}
+
