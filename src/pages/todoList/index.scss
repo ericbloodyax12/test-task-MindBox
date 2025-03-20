@@ -14,12 +14,14 @@
         gap: 15px;
         background-color: #c7c7c7;
         padding-left: 20px;
-        &.accordion-icon {
+
+        .accordion-icon {
           transition: transform 0.3s ease;
           cursor: pointer;
+
         }
 
-        &.rotated {
+        .rotated {
           transform: rotate(180deg);
         }
       }

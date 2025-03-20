@@ -3,24 +3,27 @@ import {observer} from "mobx-react-lite";
 import {useStores} from "@/providers";
 import { UI } from '@/components';
 import crossIcon from "@/assets/images/cross.png";
+import {Todo} from "@/models-view";
 
 import "./index.scss"
 
+
 type TTasksListProps = {
-    userId: number
+    userId: number,
+    filteredTasks: Todo[]
 }
 
 export const TasksList: React.FC<TTasksListProps> = observer(
-    ({userId}) => {
+    ({userId,filteredTasks}) => {
         const {todoStore} = useStores();
         const userTasks = todoStore.getTodosByUserId(userId)
 
          const deleteTask = useCallback(async (id: number): Promise<void> => {
-           await todoStore.deleteTodo(userId, id)
-        }, [todoStore.deleteTodo, userId])
+           await todoStore.deleteTodo(id)
+        }, [todoStore.deleteTodo])
 
         const todos = useMemo( () => {
-          return  userTasks.map((todo) => {
+          return  filteredTasks.map((todo) => {
                 return (
                     <div className={"todo-container"}>
                         <UI.CheckBox/>
