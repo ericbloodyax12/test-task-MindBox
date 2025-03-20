@@ -89,7 +89,7 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      padding: 18px 20px;
+      padding: 10px 17px;
       background: linear-gradient(180deg, #f8f8f8 0%, #eaeaea 100%);
       transition: all 0.3s ease;
       position: relative;
@@ -138,5 +138,11 @@
     transform: scale(1.02) translateY(0);
     opacity: 1;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@media (max-width: 768px) {
+  .tasks-list-container {
+    padding: 10px 0px;
   }
 }
