@@ -6,23 +6,33 @@
   gap: 10px;
   padding: 10px;
 
+  .todo-container {
+    display: flex;
+    gap: 10px;
+    box-sizing: content-box;
+    padding: 4px;
+    border: #d9d9d9 solid 3px;
+
+    .delete-icon-container {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .delete-icon {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  .completed-text {
+    text-decoration: line-through;
+    color: #d9d9d9
+  }
+
 }
 
-.todo-container {
-  display: flex;
-  gap: 10px
-}
 
-.delete-icon-container {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-}
 
-.delete-icon {
-  width: 15px;
-  height: 15px;
-}

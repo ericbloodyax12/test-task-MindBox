@@ -1,2 +1,2 @@
-export * as UI from "./ui"
+export * as CustomUI from "./ui"
 export * from "./todoList"

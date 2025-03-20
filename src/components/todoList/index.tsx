@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {TasksList} from "@/components/todoList/tasksList";
-import { UI } from '@/components';
+import { CustomUI } from '@/components';
 import {observer} from "mobx-react-lite";
 
 import "./index.scss"
@@ -23,26 +23,26 @@ export const TodoList: React.FC<TTodoListProps> = observer(
         const itemsLeftCount =  filteredTasks.length
 
         return (
-            <UI.Card>
-                <TasksList userId={userId} filteredTasks={filteredTasks} />
+            <CustomUI.Card>
+                <TasksList userId={userId} filteredTasks={filteredTasks}/>
                 <div className={"todoList-bottom-panel"}>
                     {`${itemsLeftCount} items left`}
                     <div className={"todoList-bottom-panel__mid"}>
-                        <UI.Button onClick={() => setStatus(EFilterTD.ALL) }>
+                        <CustomUI.Button onClick={() => setStatus(EFilterTD.ALL) }>
                             {EFilterTD.ALL}
-                        </UI.Button>
-                        <UI.Button onClick={() => setStatus(EFilterTD.Active) }>
+                        </CustomUI.Button>
+                        <CustomUI.Button onClick={() => setStatus(EFilterTD.Active) }>
                             {EFilterTD.Active}
-                        </UI.Button>
-                        <UI.Button onClick={() => setStatus(EFilterTD.COMPLETED) }>
+                        </CustomUI.Button>
+                        <CustomUI.Button onClick={() => setStatus(EFilterTD.COMPLETED) }>
                             {EFilterTD.COMPLETED}
-                        </UI.Button>
+                        </CustomUI.Button>
                     </div>
-                    <UI.Button>
+                    <CustomUI.Button>
                         Clear Completed
-                    </UI.Button>
+                    </CustomUI.Button>
                 </div>
-            </UI.Card>
+            </CustomUI.Card>
         );
     }
 )

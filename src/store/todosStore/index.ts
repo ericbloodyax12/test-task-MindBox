@@ -47,7 +47,7 @@ export class TodosStore {
       return this._todos.filter(todo => todo.userId === userId)
   }
 
-  async deleteTodo(id: number ): Promise<void> {
+  deleteTodo(id: number ): void {
     const filteredTodos = this._todos.filter(todo => todo.id !== id)
     this.setTodos(filteredTodos)
     StorageHelper.setData({name:StorageTypeName.todos,data:filteredTodos}) // если бы был полноценный api,
@@ -63,7 +63,7 @@ export class TodosStore {
     // если бы был полноценный api, то использовался метод api POST
   }
 
-  async changeTodoStatus(id: number ): Promise<void> {
+  changeTodoStatus(id: number ): void {
     const updatedTodos = this._todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo);
     this.setTodos(updatedTodos)
     StorageHelper.setData({name:StorageTypeName.todos,data:updatedTodos})
