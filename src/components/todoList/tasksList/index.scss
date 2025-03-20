@@ -9,9 +9,14 @@
   .todo-container {
     display: flex;
     gap: 10px;
-    box-sizing: content-box;
     padding: 4px;
     border: #d9d9d9 solid 3px;
+    justify-content: space-between;
+
+    .todo-container__title {
+      display: flex;
+      gap: 10px;
+    }
 
     .delete-icon-container {
       background: none;
