@@ -1,9 +1,10 @@
 import {makeAutoObservable} from "mobx";
-import { v4 as uuidv4 } from "uuid";
+import {v4 as uuidv4} from "uuid";
 
 import {Todo} from "@/models-view";
 import {todoService} from "@/service";
 import {EPriority} from "@/models-view/Todo/EPriority.ts";
+import {StorageHelper, StorageTypeName} from "@/store/todosStore/helpers/storageHelper.ts";
 
 export class TodosStore {
 
@@ -27,9 +28,9 @@ export class TodosStore {
   }
 
   async getAllTodos(): Promise<Todo[]> {
-    const todoFromLocalStorage = localStorage.getItem("todos");
+    const todoFromLocalStorage = StorageHelper.getData(StorageTypeName.todos);
     if (todoFromLocalStorage) {
-      return JSON.parse(todoFromLocalStorage)
+      return todoFromLocalStorage
     }
     try {
       const allDTOTodos = await todoService.getAllTodos()
@@ -43,14 +44,14 @@ export class TodosStore {
   }
 
   getTodosByUserId(userId: number ): Todo[] {
-    const userTasks = this._todos.filter(todo => todo.userId === userId)
       return this._todos.filter(todo => todo.userId === userId)
   }
 
   async deleteTodo(id: number ): Promise<void> {
     const filteredTodos = this._todos.filter(todo => todo.id !== id)
     this.setTodos(filteredTodos)
-    localStorage.setItem("todos", JSON.stringify(filteredTodos)) // если бы был полноценный api, то использовался метод api DELETE
+    StorageHelper.setData({name:StorageTypeName.todos,data:filteredTodos}) // если бы был полноценный api,
+    // то использовался метод api DELETE
 
   }
   async addTodo(userId: number, name: string ): Promise<void> {
@@ -58,10 +59,15 @@ export class TodosStore {
     const newTodo:Todo = {userId, id:id, title: name, completed: false, priority: EPriority.MEDIUM};
     const newTodos = [newTodo, ...this._todos]
     this.setTodos(newTodos)
-    localStorage.setItem("todos", JSON.stringify(newTodos)) // если бы был полноценный api, то использовался метод api POST
-
+    StorageHelper.setData({name:StorageTypeName.todos, data: newTodos}) // реализовал логику добавления таски,
+    // если бы был полноценный api, то использовался метод api POST
   }
 
+  async changeTodoStatus(id: number ): Promise<void> {
+    const updatedTodos = this._todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo);
+    this.setTodos(updatedTodos)
+    StorageHelper.setData({name:StorageTypeName.todos,data:updatedTodos})
+  }
 
 }
 
