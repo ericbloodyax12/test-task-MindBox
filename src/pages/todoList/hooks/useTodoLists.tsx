@@ -1,7 +1,7 @@
 import {useMemo} from "react";
 import {classNames} from "@/helpers";
 import {BottomIcon} from "@/assets/svgIcon/bottomIcon.tsx";
-import {TodoList, CustomUI} from "@/components";
+import {TasksListWrapper, CustomUI} from "@/components";
 
 
 export const useTodoLists = (
@@ -25,7 +25,7 @@ export const useTodoLists = (
             <h2> {`Todo List for User ${userId}`}</h2>
           </div>
           {activeUserId === userId && (
-            <TodoList userId={userId}/>
+            <TasksListWrapper userId={userId}/>
           )}
         </CustomUI.Card>
       )

@@ -13,7 +13,7 @@ type TTodoListProps = {
   userId: number
 }
 
-export const TodoList: React.FC<TTodoListProps> = observer(
+export const TasksListWrapper: React.FC<TTodoListProps> = observer(
   ({userId}) => {
     const {todoStore,dialogStore} = useStores();
     const [status, setStatus] = useState<EFilterTD>(EFilterTD.ALL);
@@ -51,7 +51,7 @@ export const TodoList: React.FC<TTodoListProps> = observer(
                         Clear Completed
                     </CustomUI.Button>
                 </div>
-                <CustomUI.Button onClick={addNewTodo} >
+                <CustomUI.Button onClick={addNewTodo}>
                     Add New Todo
                 </CustomUI.Button>
             </div>
