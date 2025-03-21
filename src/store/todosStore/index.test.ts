@@ -61,4 +61,18 @@ describe('TodosStore', () => {
 
     })
 
+    describe('clear completed todos', () => {
+        it('should clear completed todos by userId',  () => {
+            const initialTodos = store.Todos;
+            const userId = 1
+            const completedTodosCount = initialTodos.filter(todo => todo.userId === userId && todo.completed).length;
+             store.clearCompletedTodos(userId)
+            const remainingTodos = store.Todos
+            expect(remainingTodos.length).toBe(5)
+            expect(remainingTodos.length).toBe(initialTodos.length - completedTodosCount)
+            expect(remainingTodos.some(todo => todo.userId === userId && todo.completed)).toBe(false);
+        })
+
+    })
+
 });

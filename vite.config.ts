@@ -4,6 +4,7 @@ import * as path from "node:path";
 
 export default defineConfig({
   plugins: [react()],
+  base: "/test-task-MindBox/",
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

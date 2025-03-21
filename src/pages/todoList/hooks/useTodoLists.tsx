@@ -9,7 +9,7 @@ export const useTodoLists = (
   toggleAccordion: (id: number) => void
 ) => {
   const todoLists = useMemo(() => {
-    return userIds.map((userId) => { //todo обернуть в мемо
+    return userIds.map((userId) => {
       const isAnyActive = userIds.some(id => id === activeUserId);
       const isNotActive = activeUserId !== userId;
       const isNotActiveNow = isAnyActive && isNotActive;

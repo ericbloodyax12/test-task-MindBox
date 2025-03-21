@@ -55,7 +55,7 @@ export class TodosStore {
 
   }
   async addTodo(userId: number, name: string ): Promise<void> {
-    const id =  parseInt(uuidv4(), 16);
+    const id =  parseInt(uuidv4(), 16); //вообще создание id происзодит на стороне сервера, но его нет в рамках тестового
     const newTodo:Todo = {userId, id:id, title: name, completed: false, priority: EPriority.MEDIUM};
     const newTodos = [newTodo, ...this._todos]
     this.setTodos(newTodos)
@@ -65,6 +65,12 @@ export class TodosStore {
 
   changeTodoStatus(id: number ): void {
     const updatedTodos = this._todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo);
+    this.setTodos(updatedTodos)
+    StorageHelper.setData({name:StorageTypeName.todos,data:updatedTodos})
+  }
+
+  clearCompletedTodos(userId: number): void {
+    const updatedTodos = this._todos.filter(todo => !(todo.userId === userId && todo.completed));
     this.setTodos(updatedTodos)
     StorageHelper.setData({name:StorageTypeName.todos,data:updatedTodos})
   }

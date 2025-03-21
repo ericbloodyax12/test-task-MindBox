@@ -18,6 +18,9 @@ export const TodoList: React.FC<TTodoListProps> = observer(
     const [status, setStatus] = useState<EFilterTD>(EFilterTD.ALL);
     const userTasks = todoStore.getTodosByUserId(userId);
     const filteredTasks = filteredTasksHelper(userTasks, status)
+    const clearCompletedHandler = () => {
+         todoStore.clearCompletedTodos(userId)
+    }
 
     const itemsLeftCount = filteredTasks.length
     const filterButtons = useMemo(() => {
@@ -35,7 +38,7 @@ export const TodoList: React.FC<TTodoListProps> = observer(
             <div className={"todoList-bottom-panel__mid"}>
                 {filterButtons}
             </div>
-            <CustomUI.Button>
+            <CustomUI.Button onClick={clearCompletedHandler}>
               Clear Completed
             </CustomUI.Button>
           </div>
