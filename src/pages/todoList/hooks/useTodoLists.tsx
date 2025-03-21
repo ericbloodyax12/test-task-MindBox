@@ -17,6 +17,7 @@ export const useTodoLists = (
       const isNotActive = activeUserId !== userId;
       const isDeactivated = isAnyActive && isNotActive;
       return <TodoList
+        key={userId}
         userId={userId}
         activeUserId={activeUserId}
         toggleAccordion={toggleAccordion}

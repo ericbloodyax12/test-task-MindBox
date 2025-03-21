@@ -29,7 +29,7 @@ export const TasksListWrapper: React.FC<TTodoListProps> = observer(
     const itemsLeftCount = filteredTasks.length
     const filterButtons = useMemo(() => {
         return Object.values(EFilterTD).map((filterName) => {
-            return <CustomUI.Button onClick={() => setStatus(filterName) }>{filterName}</CustomUI.Button>
+            return <CustomUI.Button onClick={() => setStatus(filterName)} key={filterName}>{filterName}</CustomUI.Button>
         })
     }, [])
       const addNewTodo = () => {
