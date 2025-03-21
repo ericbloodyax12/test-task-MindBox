@@ -1,18 +1,17 @@
 // если в локал сторадже нет никаких данных то тут
 import {ITodo} from "@/models-dto";
+import {ApiService} from "../api-service.ts";
 
-class TodoService {
+class TodoService extends ApiService {
 
-  private readonly API_BASE_URL = "https://jsonplaceholder.typicode.com/todos"
+  private readonly API_BASE_URL = "/todos"
 
   async getAllTodos(): Promise<ITodo[]> {
 
-    const response = await fetch(`${this.API_BASE_URL}`)
-    if (!response.ok) throw new Error('Ошибка при загрузке данных');
-    const todos: ITodo[] = await response.json()
-    return todos
+    const todos = await  super.get<ITodo[]>({path: this.API_BASE_URL})
+    return todos;
   }
 }
 
 
-export const todoService = new TodoService()
+export const todoService = new TodoService([], [], 'https://jsonplaceholder.typicode.com')

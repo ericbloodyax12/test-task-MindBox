@@ -7,14 +7,12 @@ import './App.scss';
 
 
 export function App() {
-
   return (
     <StoreProvider>
      <Layout>
         <TodoListPage userIds={[1,2,3]} />
      </Layout>
     </StoreProvider>
-
   )
 }
 

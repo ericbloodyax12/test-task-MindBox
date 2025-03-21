@@ -47,7 +47,7 @@ export class TodosStore {
       return this._todos.filter(todo => todo.userId === userId)
   }
 
-  deleteTodo(id: number ): void {
+  deleteTodo(id: number): void {
     const filteredTodos = this._todos.filter(todo => todo.id !== id)
     this.setTodos(filteredTodos)
     StorageHelper.setData({name:StorageTypeName.todos,data:filteredTodos}) // если бы был полноценный api,
