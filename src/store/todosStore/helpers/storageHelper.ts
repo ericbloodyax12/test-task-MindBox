@@ -8,7 +8,7 @@ export enum StorageTypeName {
 export type StorageType =
     { name: StorageTypeName.todos, data: Todo[] | undefined }
 
-// кастомный helper для урощенной работы с local storage
+// кастомный helpers для урощенной работы с local storage
 export class StorageHelper {
     private static get _storage() {
         if (typeof window !== "undefined") {

@@ -3,7 +3,7 @@ import {StoreProvider} from "@/providers";
 import {TodoListPage} from "@/pages";
 
 import './App.scss';
-import {DialogStoreProvider} from "@/providers/dialogProvider/DialogProvider.tsx";
+
 
 
 

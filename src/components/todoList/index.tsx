@@ -1,63 +1,37 @@
-import React, {useMemo, useState} from 'react';
-import {TasksList} from "@/components/todoList/tasksList";
-import {CustomUI} from '@/components';
+import React from 'react';
 import {observer} from "mobx-react-lite";
-import {useStores} from "@/providers";
-import {EFilterTD, filteredTasksHelper} from "@/components/todoList/helper/filterHelper.ts";
-import {AddNewTodo} from "@/pages/todoList/addNewTodo";
+
+import {  CustomUI} from "@/components";
+import {classNames} from "@/helpers";
+import {BottomIcon} from "@/assets/svgIcon/bottomIcon.tsx";
+import {TasksListWrapper} from './components/tasksList';
 
 import "./index.scss"
 
 
 type TTodoListProps = {
-  userId: number
+  userId: number;
+  activeUserId: number | null;
+  toggleAccordion: (id: number) => void;
+  isDeactivated: boolean;
+  title?: string;
 }
 
-export const TasksListWrapper: React.FC<TTodoListProps> = observer(
-  ({userId}) => {
-    const {todoStore,dialogStore} = useStores();
-    const [status, setStatus] = useState<EFilterTD>(EFilterTD.ALL);
-    const userTasks = todoStore.getTodosByUserId(userId);
-    const filteredTasks = filteredTasksHelper(userTasks, status)
-    const clearCompletedHandler = () => {
-         todoStore.clearCompletedTodos(userId)
-    }
+export const TodoList: React.FC<TTodoListProps> = observer(({
+ userId, activeUserId, toggleAccordion, isDeactivated, title
+}) => {
 
-    const itemsLeftCount = filteredTasks.length
-    const filterButtons = useMemo(() => {
-        return Object.values(EFilterTD).map((filterName) => {
-            return <CustomUI.Button onClick={() => setStatus(filterName) }>{filterName}</CustomUI.Button>
-        })
-    }, [])
-      const addNewTodo = () => {
-          dialogStore.openNewDialog({
-              headerTitle: 'Create New Todo',
-              isVisible: true,
-              dialogContent: () => <AddNewTodo userId={userId} />
-          })
-      };
-
-    return (
-      <CustomUI.Card className={'tasksList-card-wrapper'}>
-        <div className={'tasksList-wrapper'}>
-          <TasksList userId={userId} filteredTasks={filteredTasks}/>
-            <div className={"root-todoList-bottom-panel-wrapper"}>
-                <div className={"todoList-bottom-panel"}>
-                    {`${itemsLeftCount} items left`}
-                    <div className={"todoList-bottom-panel__mid"}>
-                        {filterButtons}
-                    </div>
-                    <CustomUI.Button onClick={clearCompletedHandler}>
-                        Clear Completed
-                    </CustomUI.Button>
-                </div>
-                <CustomUI.Button onClick={addNewTodo}>
-                    Add New Todo
-                </CustomUI.Button>
-            </div>
-        </div>
-      </CustomUI.Card>
-    );
-  }
-)
+  const cls = classNames('todo-list-container', {expanded: activeUserId === userId, collapsed: isDeactivated});
+  return (
+    <CustomUI.Card variant={"todoListContainer"} className={cls}>
+      <div className={"todo-header-container"} onClick={() => toggleAccordion(userId)}>
+        <BottomIcon className={`accordion-icon ${activeUserId === userId ? "rotated" : ""}`}/>
+        <h2> {`Todo List for User ${userId}`} {title}</h2>
+      </div>
+      {activeUserId === userId && (
+        <TasksListWrapper userId={userId}/>
+      )}
+    </CustomUI.Card>
+  );
+})
 

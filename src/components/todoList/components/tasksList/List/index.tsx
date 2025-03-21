@@ -6,7 +6,7 @@ import crossIcon from "@/assets/images/cross.png";
 import {Todo} from "@/models-view";
 import {classNames} from "@/helpers";
 
-import "./index.scss"
+import "../index.scss"
 
 
 type TTasksListProps = {

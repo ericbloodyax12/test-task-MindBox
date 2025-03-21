@@ -39,5 +39,21 @@
 
 }
 
-
-
+.tasksList-card-wrapper {
+  width: 100%;
+  .root-todoList-bottom-panel-wrapper {
+    display: flex;
+    flex-direction: column;
+    .todoList-bottom-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 15px;
+      //width: 100%;
+      .todoList-bottom-panel__mid {
+        display: flex;
+        gap: 15px;
+      }
+    }
+  }
+}

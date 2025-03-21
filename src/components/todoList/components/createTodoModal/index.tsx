@@ -9,7 +9,7 @@ type TAddNewCardProps = {
     userId: number
 }
 
-export const AddNewTodo: React.FC<TAddNewCardProps> = ({userId}) => {
+export const CreateTodoModal: React.FC<TAddNewCardProps> = ({userId}) => {
 
     const {todoStore, dialogStore} = useStores()
     const [formState, setFormState] = useState<{
