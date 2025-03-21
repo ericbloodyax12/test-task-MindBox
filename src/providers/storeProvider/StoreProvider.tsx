@@ -3,6 +3,7 @@ import {observer} from "mobx-react-lite";
 
 import {DialogStore, TodosStore} from "@/store";
 import {StoreContext} from "./StoreContext.tsx";
+import {DialogContainer} from "@/components";
 
 
 type TStoreProviderProps = {
@@ -19,6 +20,7 @@ export const StoreProvider: React.FC<TStoreProviderProps> = observer((props) => 
     return (
       <StoreContext.Provider value={{todoStore, dialogStore}}>
         {props.children}
+          <DialogContainer/>
       </StoreContext.Provider>
     );
   }

@@ -15,12 +15,12 @@ export const useTodoLists = (
     return userIds.map((userId) => {
       const isAnyActive = userIds.some(id => id === activeUserId);
       const isNotActive = activeUserId !== userId;
-      const isNotActiveNow = isAnyActive && isNotActive;
+      const isDeactivated = isAnyActive && isNotActive;
       return <TodoList
         userId={userId}
         activeUserId={activeUserId}
         toggleAccordion={toggleAccordion}
-        isNotActiveNow={isNotActiveNow}
+        isDeactivated={isDeactivated}
       />
     })
   }, [userIds, activeUserId]);
