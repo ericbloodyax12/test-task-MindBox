@@ -1,6 +1,8 @@
 import { describe, it, expect, beforeEach, beforeAll, vi } from 'vitest';
 
 import {TodosStore} from "@/store";
+import {EPriority} from "@/models-view/Todo/EPriority.ts";
+import {StorageHelper, StorageTypeName} from "@/store/todosStore/helpers/storageHelper.ts";
 
 
 describe('TodosStore', () => {
@@ -23,6 +25,7 @@ describe('TodosStore', () => {
             },
             writable: true,
         });
+        vi.spyOn(StorageHelper, "setData").mockImplementation(() => {});
     });
 
     beforeEach(() => {
@@ -74,4 +77,31 @@ describe('TodosStore', () => {
 
     })
 
+    describe('addTodo', () => {
+        it('should add new todo with current name and id', async () => {
+            const userId = 1;
+            const title = "new todo";
+
+            await store.addTodo(userId, title);
+
+            const addedTodo = store.Todos.find(todo => todo.title === title);
+
+            expect(addedTodo).toBeDefined();
+            expect(addedTodo?.userId).toBe(userId);
+            expect(addedTodo?.completed).toBe(false);
+            expect(addedTodo?.priority).toBe(EPriority.MEDIUM);
+        });
+
+        it('should store the updated todos list in localStorage', async () => {
+            const userId = 2;
+            const title = "Test task";
+
+            await store.addTodo(userId, title);
+
+            expect(StorageHelper.setData).toHaveBeenCalledWith({
+                name: StorageTypeName.todos,
+                data: store.Todos
+            });
+        });
+    });
 });
