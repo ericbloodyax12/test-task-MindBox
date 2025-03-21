@@ -1,5 +1,8 @@
 .tasksList-card-wrapper {
     width: 100%;
+  .root-todoList-bottom-panel-wrapper {
+    display: flex;
+    flex-direction: column;
     .todoList-bottom-panel {
       display: flex;
       justify-content: space-between;
@@ -11,6 +14,8 @@
         gap: 15px;
       }
     }
+  }
+
 }
 
 

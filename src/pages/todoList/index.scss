@@ -58,7 +58,7 @@
       top: -10px;
 
       z-index: 3;
-      min-height: 72vh;
+      min-height: 76vh;
       border-radius: 18px;
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
       transform: scale(1.02);
@@ -144,5 +144,10 @@
 @media (max-width: 768px) {
   .tasks-list-container {
     padding: 10px 0px;
+  }
+}
+@media (max-height: 700px) {
+  .todo-list-page .todo-list-container.expanded {
+    min-height: 88vh;
   }
 }

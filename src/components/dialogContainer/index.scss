@@ -1,0 +1,28 @@
+@keyframes fadeIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.dialog-root-container {
+  display: flex;
+  gap: 10px;
+
+  width: 700px;
+  height: 300px;
+  padding: 1rem;
+
+  background-color: var(--color-dark-700);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px var(--color-dark-900);
+
+  animation: fadeIn 0.5s ease-out;
+}
+
+
