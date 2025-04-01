@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useRef, useState} from 'react';
 import {TextField} from "@/components/ui/textField";
 import {useStores} from "@/providers";
 import { CustomUI } from '@/components';
@@ -16,6 +16,8 @@ export const CreateTodoModal: React.FC<TAddNewCardProps> = ({userId}) => {
        name: string,
     }>({name:"new todo", })
 
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    console.log("ref", inputRef.current)
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
@@ -36,6 +38,7 @@ export const CreateTodoModal: React.FC<TAddNewCardProps> = ({userId}) => {
                 <TextField
                     className={"textField"}
                     label={'question'}
+                    ref={inputRef}
                     onChange={(e) => {
                         setFormState({
                             ...formState,
